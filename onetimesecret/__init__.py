@@ -1,0 +1,1 @@
+from .onetimesecret import OneTimeSecretCli
