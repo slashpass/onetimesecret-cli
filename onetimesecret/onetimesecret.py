@@ -1,7 +1,8 @@
 import requests
 from requests.auth import HTTPBasicAuth
 
-URL = "https://onetimesecret.com"
+# Default base URL template with region
+URL_TEMPLATE = "https://{}.onetimesecret.com"
 
 
 class OneTimeSecretCli(object):
@@ -14,7 +15,8 @@ class OneTimeSecretCli(object):
 
         return "{}/secret/{}".format(self.url, response.json()["secret_key"])
 
-    def __init__(self, user, key, url=URL):
+    def __init__(self, user, key, url=URL_TEMPLATE, region="us"):
         self.key = key
         self.url = url
         self.user = user
+        self.url = URL_TEMPLATE.format(region)  # URL dynamically includes region
