@@ -8,15 +8,14 @@ URL_TEMPLATE = "https://{}.onetimesecret.com"
 class OneTimeSecretCli(object):
     def create_link(self, secret, ttl=900):
         response = requests.post(
-            "{}/api/v1/share".format(self.url),
-            data={"secret": secret, "ttl": ttl},  # 900 ttl => 15 minutes
+            f"{self.url}/api/v1/share",
+            data={"secret": secret, "ttl": ttl},
             auth=HTTPBasicAuth(self.user, self.key),
         )
 
-        return "{}/secret/{}".format(self.url, response.json()["secret_key"])
+        return f'{self.url}/secret/{response.json()["secret_key"]}'
 
     def __init__(self, user, key, url=URL_TEMPLATE, region="us"):
         self.key = key
-        self.url = url
         self.user = user
-        self.url = URL_TEMPLATE.format(region)  # URL dynamically includes region
+        self.url = url.format(region)  # URL dynamically includes region
