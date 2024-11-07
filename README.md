@@ -34,9 +34,20 @@ print("Secret link:", link)
 
 `cli = OneTimeSecretCli(ONETIMESECRET_USER, ONETIMESECRET_KEY, REGION)`
 
-- ONETIMESECRET_USER (str): Your OneTimeSecret API username (usually your account email).
-- ONETIMESECRET_KEY (str): Your OneTimeSecret API key.
+- ONETIMESECRET_USER (str, optional): Your OneTimeSecret API username (usually your account email).
+- ONETIMESECRET_KEY (str, optional): Your OneTimeSecret API key.
 - REGION (str, optional): The region subdomain to use for API requests. Defaults to "us". Use "eu" for Europe. See Onetimesecret's website for the latest regions available.
+
+### Examples:
+
+```
+# US region (default)
+cli = OneTimeSecretCli("user@email.com", "api-key")
+# EU region
+cli = OneTimeSecretCli("user@email.com", "api-key", "eu")
+# Anonymous Request (default region: US)
+cli = OneTimeSecretCli()
+```
 
 ## Creating a Link
 
@@ -47,6 +58,6 @@ print("Secret link:", link)
 
 # Expected Output
 
-Running the above example will print a secure link that can be shared:
+Running the example code will print a secure link that can be shared:
 
 Secret link: https://us.onetimesecret.com/secret/xxxxxxxxxxx
